@@ -1,0 +1,7 @@
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\obj\Debug\SoftwireCalculator.csprojResolveAssemblyReference.cache
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\obj\Debug\SoftwireCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\bin\Debug\SoftwireCalculator.exe.config
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\bin\Debug\SoftwireCalculator.exe
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\bin\Debug\SoftwireCalculator.pdb
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\obj\Debug\SoftwireCalculator.exe
+C:\Users\Sam Egger\source\repos\SoftwireCalculator\SoftwireCalculator\obj\Debug\SoftwireCalculator.pdb
