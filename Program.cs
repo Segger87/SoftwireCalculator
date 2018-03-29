@@ -16,7 +16,11 @@ namespace Calculator
             {
                 int calculationMode = Calculation.AskForTypeOfCalculation();
 
-                if(calculationMode == NumberCalculator)
+                if(calculationMode > 2)
+                {
+                  PrintWelcomeMessage();
+                }
+                else if(calculationMode == NumberCalculator)
                 {
                    Calculation.PerformOneCalculation();
                 }
