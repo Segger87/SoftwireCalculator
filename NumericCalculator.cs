@@ -62,8 +62,12 @@ namespace Calculator
 
         public static int AskForTypeOfCalculation()
         {
-            Console.WriteLine("What type of calculator would you like to use: \n 1) Numeric \n 2) Date ");
-            int selectCalcType = int.Parse(Console.ReadLine());
+            int selectCalcType = 0;
+            do
+            {
+               Console.WriteLine("What type of calculator would you like to use: \n 1) Numeric \n 2) Date ");
+            } while (!int.TryParse(Console.ReadLine(), out selectCalcType));
+
             return selectCalcType;
         }
 
