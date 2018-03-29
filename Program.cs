@@ -8,15 +8,22 @@ namespace Calculator
 {
     class Program
     {
+        private const int NumberCalculator = 1;
+        private const int DateCalculator = 2;
         static void Main(string[] args)
         {
             while(true)
             {
-                PrintWelcomeMessage();
-                string op = OperatorName();
-                int numberOfValues = NumberOfCalculations();
-                int i = PerformOneCalculation(op, numberOfValues);
+                int calculationMode = AskForTypeOfCalculation();
 
+                if(calculationMode == NumberCalculator)
+                {
+                   PerformOneCalculation();
+                }
+                else
+                {
+                    PerformDateCalculation();
+                }
                 Console.ReadLine();
             }
         }
@@ -24,11 +31,14 @@ namespace Calculator
         private static void PrintWelcomeMessage()
             {
                 Console.WriteLine("Welcome to the Calculator");
-            }
+                AskForTypeOfCalculation();
+        }
 
-        private static int PerformOneCalculation(string op, int numberOfValues)
+        private static void PerformOneCalculation()
             {
-        
+
+            string op = OperatorName();
+            int numberOfValues = NumberOfCalculations();
             int[] numbersInput = new int[numberOfValues];
          
             for (int i = 0; i < numberOfValues; i++)
@@ -58,8 +68,8 @@ namespace Calculator
                     result = result / numbersInput[i];
                 }
             }
-            Console.WriteLine("The answer is: " + result);
-            return result;
+            Console.WriteLine("{0:N}", result); //converts string format to include commas on large numbers
+      
         }
         private static string OperatorName()
         {
@@ -78,6 +88,29 @@ namespace Calculator
         } while (!int.TryParse(Console.ReadLine(), out numberOfValues));
 
            return numberOfValues;
+        }
+
+        private static int AskForTypeOfCalculation()
+        {
+            Console.WriteLine("What type of calculator would you like to use: \n 1) Numeric \n 2) Date ");
+            int selectCalcType = int.Parse(Console.ReadLine());
+            return selectCalcType;
+        }
+
+        private static void PerformDateCalculation()
+        {
+            DateTime userDate;
+            do
+            {
+                Console.WriteLine("Please Enter a Date: ");
+            } while (!DateTime.TryParse(Console.ReadLine(), out userDate));
+            {
+                Console.WriteLine("Please enter hwo many days you wish to add: ");
+                int daysToAdd = int.Parse(Console.ReadLine());
+                userDate = userDate.AddDays(daysToAdd);
+                Console.WriteLine(userDate.ToLongDateString());
+            }
+              
         }
     }
 }
