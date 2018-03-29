@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Calculator
 {
@@ -6,7 +7,6 @@ namespace Calculator
     {
         public static void PerformOneCalculation()
         {
-
             string op = OperatorName();
             int numberOfValues = NumberOfCalculations();
             int[] numbersInput = new int[numberOfValues];
@@ -40,6 +40,13 @@ namespace Calculator
             }
             Console.WriteLine("{0:N}", result); //converts string format to include commas on large numbers
 
+            string path = @"C:\Users\Sam Egger\source\repos\test.txt";
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.WriteLine(result);
+            }
+
+
         }
         public static string OperatorName()
         {
@@ -54,7 +61,7 @@ namespace Calculator
 
             do
             {
-                Console.WriteLine("Please enter how many numbers you wish to calculate: ");
+              Console.WriteLine("Please enter how many numbers you wish to calculate: ");
             } while (!int.TryParse(Console.ReadLine(), out numberOfValues));
 
             return numberOfValues;
