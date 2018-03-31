@@ -16,8 +16,12 @@ namespace Calculator
                 Console.WriteLine("Please Enter a Date: ");
             } while (!DateTime.TryParse(Console.ReadLine(), out userDate));
             {
-                Console.WriteLine("Please enter hwo many days you wish to add: ");
-                int daysToAdd = int.Parse(Console.ReadLine());
+                int daysToAdd = 0;
+                do
+                {
+                  Console.WriteLine("Please enter how many days you wish to add: ");
+                } while (!int.TryParse(Console.ReadLine(),out daysToAdd));
+                
                 userDate = userDate.AddDays(daysToAdd);
                 Console.WriteLine(userDate.ToLongDateString());
             }

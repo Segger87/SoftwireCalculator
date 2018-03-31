@@ -13,45 +13,70 @@ namespace Calculator
 
             for (int i = 0; i < numberOfValues; i++)
             {
-                Console.Write("Please enter number " + (i + 1) + ": ");
-                numbersInput[i] = int.Parse(Console.ReadLine());
+                do
+                {
+                  Console.Write("Please enter number " + (i + 1) + ": ");
+                } while (!int.TryParse(Console.ReadLine(), out numbersInput[i]));  
+            
             }
 
-            int result = numbersInput[0];
-
-            for (int i = 1; i < numbersInput.Length; i++)
+            try
             {
-                if (op == "+")
+                int result = numbersInput[0];
+
+                for (int i = 1; i < numbersInput.Length; i++)
                 {
-                    result = result + numbersInput[i];
+                    if (op == "+")
+                    {
+                        result = result + numbersInput[i];
+                    }
+                    else if (op == "-")
+                    {
+                        result = result - numbersInput[i];
+                    }
+                    else if (op == "*")
+                    {
+                        result = result * numbersInput[i];
+                    }
+                    else if (op == "/")
+                    {
+                        result = result / numbersInput[i];
+                    }
                 }
-                else if (op == "-")
+                Console.WriteLine("{0:N}", result); //converts string format to include commas on large numbers
+
+                string path = @"C:\Users\Sam Egger\source\repos\test.txt";
+                using (StreamWriter sw = File.AppendText(path))
                 {
-                    result = result - numbersInput[i];
-                }
-                else if (op == "*")
-                {
-                    result = result * numbersInput[i];
-                }
-                else if (op == "/")
-                {
-                    result = result / numbersInput[i];
+                    sw.WriteLine(result);
                 }
             }
-            Console.WriteLine("{0:N}", result); //converts string format to include commas on large numbers
-
-            string path = @"C:\Users\Sam Egger\source\repos\test.txt";
-            using (StreamWriter sw = File.AppendText(path))
+            catch (IndexOutOfRangeException)
             {
-                sw.WriteLine(result);
+                Console.WriteLine("You must enter a number greater than 0");
             }
-
-
-        }
+        }        
+    
         public static string OperatorName()
         {
-            Console.WriteLine("Please enter the mathmatical operator: ");
-            string op = Console.ReadLine();
+            bool validOp = true;
+            string op ="";
+            while (validOp)
+            {
+                Console.WriteLine("Please enter the mathmatical operator: ");
+                string opp = Console.ReadLine();
+
+                if (opp == "+" || opp == "-" || opp == "*" || opp == "/")
+                {
+                    op = opp;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry " + opp + " is not an acceptable operator");
+                    opp = Console.ReadLine();
+                }
+            }
             return op;
         }
 
@@ -70,9 +95,10 @@ namespace Calculator
         public static int AskForTypeOfCalculation()
         {
             int selectCalcType = 0;
+
             do
             {
-               Console.WriteLine("What type of calculator would you like to use: \n 1) Numeric \n 2) Date ");
+              Console.WriteLine("What type of calculator would you like to use: \n 1) Numeric \n 2) Date \n 3) Exit ");
             } while (!int.TryParse(Console.ReadLine(), out selectCalcType));
 
             return selectCalcType;

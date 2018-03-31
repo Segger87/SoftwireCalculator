@@ -11,29 +11,34 @@ namespace Calculator
     {
         private const int NumberCalculator = 1;
         private const int DateCalculator = 2;
+        private const int Exit = 3;
         private const string path = @"C:\Users\Sam Egger\source\repos\test.txt";
         static void Main(string[] args)
         {
             using (StreamWriter sw = new StreamWriter(path))
             {
-                sw.Flush();
                 sw.Write(String.Empty);
             }
+            PrintWelcomeMessage();
             while (true)
             {
                 int calculationMode = Calculation.AskForTypeOfCalculation();
 
-                if(calculationMode > 2)
+                if(calculationMode > 3)
                 {
-                  PrintWelcomeMessage();
+                    Console.WriteLine("Sorry " + calculationMode + " is not a valid option");
                 }
                 else if(calculationMode == NumberCalculator)
                 {
                    Calculation.PerformOneCalculation();
                 }
-                else
+                else if(calculationMode == DateCalculator)
                 {
                    DateCalculation.PerformDateCalculation();
+                }
+                else if (calculationMode == Exit)
+                {
+                    Environment.Exit(0);
                 }
                 Console.ReadLine();
             }
@@ -42,7 +47,7 @@ namespace Calculator
         private static void PrintWelcomeMessage()
          {
             Console.WriteLine("Welcome to the Calculator");
-            Calculation.AskForTypeOfCalculation();
+            Console.WriteLine("================================");
          }
     }
 }
