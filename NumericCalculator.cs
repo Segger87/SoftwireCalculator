@@ -26,30 +26,50 @@ namespace Calculator
 
                 for (int i = 1; i < numbersInput.Length; i++)
                 {
-                    if (op == "+")
+                    switch (op)
                     {
-                        result = result + numbersInput[i];
-                    }
-                    else if (op == "-")
-                    {
-                        result = result - numbersInput[i];
-                    }
-                    else if (op == "*")
-                    {
-                        result = result * numbersInput[i];
-                    }
-                    else if (op == "/")
-                    {
-                        result = result / numbersInput[i];
+                        case "+":
+                            result = result + numbersInput[i];
+                            break;
+                        case "-":
+                            result = result - numbersInput[i];
+                            break;
+                        case "/":
+                            result = result / numbersInput[i];
+                            break;
+                        case "*":
+                            result = result * numbersInput[i];
+                            break;
+                        default:
+                            break;
                     }
                 }
                 Console.WriteLine("{0:N}", result); //converts string format to include commas on large numbers
 
-                string path = @"C:\Users\Sam Egger\source\repos\test.txt";
-                using (StreamWriter sw = File.AppendText(path))
+                try
                 {
-                    sw.WriteLine(result);
+                    string path = @"C:\Users\Sam Egger\source\repos\test.txt";
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(result);
+                    }
                 }
+                catch (FileNotFoundException ex)
+                {
+                    Console.WriteLine("There was a problem");
+                    Console.WriteLine("Make sure the filename is correct");
+                }
+                catch (DirectoryNotFoundException ex)
+                {
+                    Console.WriteLine("There was a problem");
+                    Console.WriteLine("Make sure the directory exists");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("There was a problem");
+                    Console.WriteLine(ex.Message);
+                }
+               
             }
             catch (IndexOutOfRangeException)
             {

@@ -24,30 +24,29 @@ namespace Calculator
             {
                 int calculationMode = Calculation.AskForTypeOfCalculation();
 
-                if(calculationMode > 3)
+                switch (calculationMode)
                 {
-                    Console.WriteLine("Sorry " + calculationMode + " is not a valid option");
+                    case 1:
+                        Calculation.PerformOneCalculation();
+                        break;
+                    case 2:
+                        DateCalculation.PerformDateCalculation();
+                        break;
+                    case 3:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Sorry " + calculationMode + " is not a valid option");
+                        break;
                 }
-                else if(calculationMode == NumberCalculator)
-                {
-                   Calculation.PerformOneCalculation();
-                }
-                else if(calculationMode == DateCalculator)
-                {
-                   DateCalculation.PerformDateCalculation();
-                }
-                else if (calculationMode == Exit)
-                {
-                    Environment.Exit(0);
-                }
-                Console.ReadLine();
+              Console.ReadLine();
             }
         }
 
         private static void PrintWelcomeMessage()
-         {
+        {
             Console.WriteLine("Welcome to the Calculator");
             Console.WriteLine("================================");
-         }
+        }
     }
 }
